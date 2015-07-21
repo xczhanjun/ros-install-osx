@@ -49,6 +49,7 @@ do_install()
   fi
 
   # Check for pip packages in the system Python directory.
+  ls /Library/Python/2.7/site-packages/
   if [ $(ls /Library/Python/2.7/site-packages/ | wc -l) -gt 1 ]; then
     echo "These instructions are about to install Python from Homebrew. However, there are already"
     echo "pip packages installed against the system python, in the following path:"
@@ -56,7 +57,7 @@ do_install()
     echo "    /Library/Python/2.7/site-packages/"
     echo
     echo "To proceed, please remove the contents of this folder."
-    exit 1
+    #exit 1
   fi
 
   # Check for root-owned stuff in /usr/local
