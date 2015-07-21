@@ -50,6 +50,8 @@ do_install()
 
   # Check for pip packages in the system Python directory.
   ls /Library/Python/2.7/site-packages/
+  sudo rm -rf /Library/Python/2.7/site-packages/*
+  
   if [ $(ls /Library/Python/2.7/site-packages/ | wc -l) -gt 1 ]; then
     echo "These instructions are about to install Python from Homebrew. However, there are already"
     echo "pip packages installed against the system python, in the following path:"
@@ -57,7 +59,7 @@ do_install()
     echo "    /Library/Python/2.7/site-packages/"
     echo
     echo "To proceed, please remove the contents of this folder."
-    #exit 1
+    exit 1
   fi
 
   # Check for root-owned stuff in /usr/local
@@ -80,6 +82,7 @@ do_install()
     mkdir -p ~/Library/Python/2.7/lib/python/site-packages
     echo "$(brew --prefix)/lib/python2.7/site-packages" >> ~/Library/Python/2.7/lib/python/site-packages/homebrew.pth
   fi
+  brew link --overwrite python
 
   # Homebrew taps for prerequisites
   brew tap ros/deps
@@ -95,9 +98,9 @@ do_install()
   # Prerequisites. All of these should in theory be covered by rosdep, but for various reasons
   # they're best installed in advance, due to needing a specific version, or specifying build
   # options, or whatever. Obviously it would be great to migrate these toward purely rosdep.
-  brew install cmake libyaml lz4 assimp
   brew install boost --with-python
   brew install opencv --with-qt --with-eigen --with-tbb
+  brew install cmake libyaml lz4 assimp
   brew install homebrew/science/pcl  # Remove qualifier when removed from ros/homebrew-deps
   brew install ogre
   brew install gazebo5
