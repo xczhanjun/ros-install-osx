@@ -103,8 +103,8 @@ do_install()
   brew install opencv --with-qt --with-eigen --with-tbb
   brew install cmake libyaml lz4 assimp
   brew install homebrew/science/pcl  # Remove qualifier when removed from ros/homebrew-deps
-  brew install ogre
-  brew install gazebo5
+  brew install ogre --verbose
+  brew install gazebo5 --verbose
 
   # ROS infrastructure tools
   pip install -U setuptools rosdep rosinstall_generator wstool rosinstall catkin_tools catkin_pkg bloom empy sphinx
