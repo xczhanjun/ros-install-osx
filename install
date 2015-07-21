@@ -38,6 +38,23 @@ do_install()
     source .bash_profile
     brew doctor
   fi
+
+  travis_wait() {
+    local cmd="$@"
+    local log_file=travis_wait_$$.log
+    $cmd &
+    while true; do
+      ps -p$! 2>&1 >/dev/null
+      if [ $? = 0 ]; then
+        echo "still running: $cmd"; sleep 15
+      else
+        echo "$cmd finished"
+        cat $log_file
+        break
+      fi
+    done
+  }
+
   travis_wait brew update
 
   # XQuartz
