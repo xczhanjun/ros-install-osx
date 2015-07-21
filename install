@@ -100,11 +100,17 @@ do_install()
   # options, or whatever. Obviously it would be great to migrate these toward purely rosdep.
   brew unlink boost
   brew install boost --with-python > /dev/null
+  echo "."
   brew install opencv --with-qt --with-eigen --with-tbb > /dev/null
+  echo "."
   brew install cmake libyaml lz4 assimp > /dev/null
+  echo "."
   brew install pcl > /dev/null
-  brew install ogre --verbose
-  brew install gazebo5 --verbose
+  echo "."
+  brew install ogre --verbose > /dev/null
+  echo "."
+  brew install gazebo5 --verbose > /dev/null
+  echo "."
 
   # ROS infrastructure tools
   pip install -U setuptools rosdep rosinstall_generator wstool rosinstall catkin_tools catkin_pkg bloom empy sphinx
