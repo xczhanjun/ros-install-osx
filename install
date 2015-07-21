@@ -98,6 +98,7 @@ do_install()
   # Prerequisites. All of these should in theory be covered by rosdep, but for various reasons
   # they're best installed in advance, due to needing a specific version, or specifying build
   # options, or whatever. Obviously it would be great to migrate these toward purely rosdep.
+  brew unlink boost
   brew install boost --with-python
   brew install opencv --with-qt --with-eigen --with-tbb
   brew install cmake libyaml lz4 assimp
