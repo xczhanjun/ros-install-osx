@@ -38,7 +38,7 @@ do_install()
     source .bash_profile
     brew doctor
   fi
-  brew update
+  brew update > /dev/null
 
   # XQuartz
   if ! hash xquartz 2>/dev/null; then
