@@ -102,9 +102,13 @@ do_install()
   brew reinstall fltk --devel # FLTK for El Capitan, see issue #12
 
   # Make opencv use numpy from pip rather than brew, see issue #14
+  pip install --upgrade pip
   pip install numpy
   brew install opencv --with-qt --with-eigen --with-tbb --without-numpy
-  brew install gazebo5
+  brew install gazebo7
+  
+  brew remove  ossp-uuid
+  brew unlink ossp-uuid
 
   # ROS infrastructure tools
   pip install -U setuptools rosdep rosinstall_generator wstool rosinstall catkin_tools catkin_pkg bloom empy sphinx
